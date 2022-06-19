@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { CssBaseline, Typography } from "@mui/material";
+import Directory from "./components/Directory/Directory";
+import hatsImage from "./images/hats.jpg";
+import tshirtsImage from "./images/tshirts.jpg";
+import sneakersImage from "./images/sneakers.jpg";
+import womenImage from "./images/women.jpg";
+import menImage from "./images/men.jpg";
+const App = () => {
+  const categories = [
+    {
+      id: 1,
+      title: "Hats",
+      image: hatsImage
+    },
+    {
+      id: 2,
+      title: "T-shirts",
+      image: tshirtsImage
+    },
+    {
+      id: 3,
+      title: "Sneakers",
+      image: sneakersImage
+    },
+    {
+      id: 4,
+      title: "Women",
+      image: womenImage
+    },
+    {
+      id: 5,
+      title: "Men",
+      image: menImage
+    }
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <CssBaseline />
+      <Directory categories={categories} />
+    </>
   );
-}
+};
 
 export default App;
