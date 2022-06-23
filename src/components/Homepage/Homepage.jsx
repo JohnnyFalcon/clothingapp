@@ -1,9 +1,9 @@
 import React from "react";
 import CategoryItem from "../CategoryItem/CategoryItem";
 import { Grid } from "@mui/material";
-function Directory({ categories }) {
+function Homepage({ categories }) {
   return (
-    <Grid container sx={{ p: 4 }} spacing={2}>
+    <Grid container sx={{ pl: 6, pr: 6 }} spacing={5}>
       {categories.map((category) => (
         <CategoryItem key={category.id} category={category} />
       ))}
@@ -11,4 +11,4 @@ function Directory({ categories }) {
   );
 }
 
-export default Directory;
+export default Homepage;

@@ -1,0 +1,10 @@
+.link {
+  text-decoration: none;
+  color: black;
+  margin-left: 40px;
+  letter-spacing: 2px;
+  text-shadow: 4px 4px 4px #bebdbd;
+}
+.link:hover {
+  color: darkcyan;
+}

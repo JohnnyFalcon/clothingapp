@@ -1,10 +1,15 @@
-import { CssBaseline, Typography } from "@mui/material";
-import Directory from "./components/Directory/Directory";
+import { Routes, Route } from "react-router-dom";
+import { CssBaseline } from "@mui/material";
+import Homepage from "./components/Homepage/Homepage";
+import Navbar from "./components/Navbar/Navbar";
 import hatsImage from "./images/hats.jpg";
 import tshirtsImage from "./images/tshirts.jpg";
 import sneakersImage from "./images/sneakers.jpg";
 import womenImage from "./images/women.jpg";
 import menImage from "./images/men.jpg";
+import SignIn from "./components/SignIn/SignIn";
+import { createTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 const App = () => {
   const categories = [
     {
@@ -33,10 +38,23 @@ const App = () => {
       image: menImage
     }
   ];
+
+  const theme = createTheme({
+    typography: {
+      fontFamily: ["Saira Semi Condensed", "sans-serif"].join(",")
+    }
+  });
   return (
     <>
-      <CssBaseline />
-      <Directory categories={categories} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Routes>
+          <Route path="/" element={<Navbar />}>
+            <Route index element={<Homepage categories={categories} />} />
+            <Route path="sign-in" element={<SignIn />} />
+          </Route>
+        </Routes>
+      </ThemeProvider>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Box, Paper } from "@mui/material";
+import { Grid, Box, Paper, Typography } from "@mui/material";
 import "./styles.css";
 function CategoryItem({ category }) {
   const { image, title } = category;
@@ -12,7 +12,11 @@ function CategoryItem({ category }) {
             backgroundImage: `url(${image})`
           }}
         ></Box>
-        <Paper elevation={3} className="category-name">
+        <Paper
+          elevation={3}
+          className="category-name"
+          sx={{ background: "rgba(255, 255, 255, 0.7) " }}
+        >
           <h2>{title}</h2>
           <p>Shop Now</p>
         </Paper>
