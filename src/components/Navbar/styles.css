@@ -4,7 +4,13 @@
   margin-left: 40px;
   letter-spacing: 2px;
   text-shadow: 4px 4px 4px #bebdbd;
+  margin-top: 4px;
 }
 .link:hover {
   color: darkcyan;
+}
+
+.link:active {
+  transform: translateY(-1px);
+  text-shadow: 4px 3px 5px #bebdbd;
 }

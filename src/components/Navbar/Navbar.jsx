@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
-import { AppBar, Toolbar, Container, Box } from "@mui/material";
+import { AppBar, Toolbar, Box, Chip } from "@mui/material";
 import { ContainerStyled } from "./styles";
 import logo from "../../images/premium_clothing_logo.png";
 import "./styles.css";
@@ -26,8 +26,24 @@ function Navbar() {
             <Link className="link" to="/contact">
               Contanct
             </Link>
+
             <Link className="link" to="/sign-in">
-              Sign in
+              SIGN IN
+            </Link>
+
+            <Link
+              style={{
+                textDecoration: "none",
+                marginLeft: "40px",
+                letterSpacing: "2px "
+              }}
+              to="/sign-up"
+            >
+              <Chip
+                label="SIGN UP NOW"
+                clickable
+                sx={{ backgroundColor: "darkcyan", fontSize: "1rem" }}
+              />
             </Link>
           </Box>
         </Toolbar>

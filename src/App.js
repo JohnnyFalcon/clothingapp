@@ -7,9 +7,11 @@ import tshirtsImage from "./images/tshirts.jpg";
 import sneakersImage from "./images/sneakers.jpg";
 import womenImage from "./images/women.jpg";
 import menImage from "./images/men.jpg";
-import SignIn from "./components/SignIn/SignIn";
+import SignUp from "./components/SigningPage/SignUp";
+import SignIn from "./components/SigningPage/SignIn";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
+
 const App = () => {
   const categories = [
     {
@@ -52,6 +54,7 @@ const App = () => {
           <Route path="/" element={<Navbar />}>
             <Route index element={<Homepage categories={categories} />} />
             <Route path="sign-in" element={<SignIn />} />
+            <Route path="sign-up" element={<SignUp />} />
           </Route>
         </Routes>
       </ThemeProvider>
