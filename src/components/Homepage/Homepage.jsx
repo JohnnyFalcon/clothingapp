@@ -8,7 +8,7 @@ function Homepage({ categories }) {
   return (
     <Grid container spacing={5}>
       {categories.map((category) => (
-        <Grid item lg={category.id > 3 ? 6 : 4} xs={6} sm={6}>
+        <Grid item lg={category.id > 3 ? 6 : 4} xs={6} sm={6} key={category.id}>
           <Link
             className="link"
             to={`shop/${category.title.toLowerCase()}`}

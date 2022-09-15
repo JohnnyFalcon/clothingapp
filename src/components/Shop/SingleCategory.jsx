@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import { CategoriesContext } from "../../contexts/categories.context";
-import { Grid, Paper, Box } from "@mui/material";
+import { Grid, Paper, Box, Skeleton } from "@mui/material";
 import { ButtonStyled } from "./styles";
 import { CartContext } from "../../contexts/CartContext";
+import { useParams } from "react-router-dom";
 const SingleCategory = () => {
-  const { categoriesMap, category } = useContext(CategoriesContext);
+  const { categoriesMap } = useContext(CategoriesContext);
   const { addItemToCart } = useContext(CartContext);
+  const { category } = useParams();
+
   return (
     <>
       <Box sx={{ pb: 2 }}>
@@ -45,6 +48,20 @@ const SingleCategory = () => {
             </Box>
           </Grid>
         ))}
+      </Grid>
+      {/* Set Skeleton of page whenever data is loading */}
+      <Grid container spacing={2}>
+        {!categoriesMap[category] &&
+          Array.from(Array(8)).map((_, index) => (
+            <Grid item lg={3} sm={6} xs={6} key={index} sx={{ pb: 2 }}>
+              <Skeleton
+                variant="rectangular"
+                animation="wave"
+                width="100%"
+                height="500px"
+              />
+            </Grid>
+          ))}
       </Grid>
     </>
   );

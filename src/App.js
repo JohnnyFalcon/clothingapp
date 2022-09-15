@@ -1,5 +1,5 @@
-import { Routes, Route } from "react-router-dom";
-import React from "react";
+import { Routes, Route, useLocation, useParams } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
 import { CssBaseline } from "@mui/material";
 import Homepage from "./components/Homepage/Homepage";
 import Navbar from "./components/Navbar/Navbar";
@@ -15,7 +15,7 @@ import { ThemeProvider } from "@mui/material";
 import Shop from "./components/Shop/Shop";
 import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
 import SingleCategory from "./components/Shop/SingleCategory";
-
+import { CategoriesContext } from "./contexts/categories.context";
 const App = () => {
   const categories = [
     {
@@ -59,6 +59,15 @@ const App = () => {
       }
     }
   });
+
+  const { setCategory } = useContext(CategoriesContext);
+
+  let { category } = useParams();
+  const { pathname } = useLocation();
+  useEffect(() => {
+    //setCategory();
+    console.log(pathname);
+  }, []);
 
   return (
     <>

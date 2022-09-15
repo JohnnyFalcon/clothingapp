@@ -11,7 +11,7 @@ const Shop = () => {
 
   return Object.keys(categoriesMap)?.map((title) => (
     <React.Fragment key={title}>
-      <Box sx={{ display: "flex", pb: 2 }} onClick={() => setCategory(title)}>
+      <Box sx={{ display: "flex", pb: 2 }}>
         <Link className="link" to={title}>
           <h2 className="category-title">{title}</h2>
         </Link>
