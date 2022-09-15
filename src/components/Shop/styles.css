@@ -1,0 +1,48 @@
+.img-box {
+  height: 500px;
+}
+
+.product:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.product:hover .button {
+  opacity: 0.9;
+  display: flex;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  letter-spacing: 1px;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+.category-title {
+  cursor: pointer;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  text-shadow: 4px 4px 4px #bebdbd;
+}
+.category-title:hover {
+  color: darkcyan;
+}
+
+.category-title:active {
+  transform: translateY(-1px);
+}
+
+.link {
+  text-decoration: none;
+}
+
+.category-title2 {
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  text-shadow: 4px 4px 4px #bebdbd;
+  display: flex;
+  justify-content: center;
+}

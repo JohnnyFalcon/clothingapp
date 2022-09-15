@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   auth,
   createUserDocumentFromAuth,
@@ -7,7 +7,7 @@ import {
 import { Button, InputLabel, Input, Box, Grid } from "@mui/material";
 import PasswordInput from "./PasswordInput";
 import { FormControlStyled, ButtonOutlined } from "./styles";
-import SignIn from "./SignIn";
+
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -46,7 +46,9 @@ const SignUp = () => {
         email,
         password
       );
+
       await createUserDocumentFromAuth(user, { displayName });
+
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
@@ -62,13 +64,16 @@ const SignUp = () => {
       <Box
         sx={{
           position: "absolute",
-          top: "40%",
+          top: "45%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           textAlign: "center"
         }}
       >
-        <h1>Sign up with your email and password</h1>
+        <h1 style={{ letterSpacing: "2px" }}>
+          Sign up with your <span style={{ color: "darkcyan" }}>email</span> and
+          <span style={{ color: "darkcyan" }}> password</span>
+        </h1>
         <form onSubmit={handleSubmit}>
           <Box
             sx={{

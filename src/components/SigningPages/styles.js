@@ -31,4 +31,26 @@ const ButtonOutlined = styled(Button)({
   }
 });
 
-export { FormControlStyled, ButtonStyled, ButtonOutlined };
+const ButtonSimple = styled(Button)({
+  "&:hover": {
+    backgroundColor: "black",
+    opacity: 0.8
+  }
+});
+
+const ButtonOutlined2 = styled(Button)({
+  borderColor: "black",
+  width: "250px",
+  "&:hover": {
+    backgroundColor: "black",
+    color: "white",
+    borderColor: "black"
+  }
+});
+export {
+  FormControlStyled,
+  ButtonStyled,
+  ButtonOutlined,
+  ButtonSimple,
+  ButtonOutlined2
+};

@@ -1,0 +1,12 @@
+.hrL {
+  background-color: #fff;
+  border-top: 1px dashed #8c8b8b;
+}
+
+.delete-icon:hover {
+  color: red;
+}
+
+.delete-icon:active {
+  transform: translateY(-1px);
+}

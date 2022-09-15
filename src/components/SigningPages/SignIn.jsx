@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   auth,
   signInWithGooglePopup,
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword
 } from "../../utils/firebase/firebase.utils";
-import { Button, InputLabel, Input, Box } from "@mui/material";
+import { Button, InputLabel, Input, Box, Typography } from "@mui/material";
 import PasswordInput from "./PasswordInput";
 import { FormControlStyled, ButtonStyled, ButtonOutlined } from "./styles";
 
@@ -32,11 +32,11 @@ const SignIn = () => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         formFields.email,
         formFields.password
       );
-      console.log(response);
+
       resetFormFields();
     } catch (error) {
       switch (error.code) {
@@ -53,8 +53,7 @@ const SignIn = () => {
   };
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   return (
@@ -68,8 +67,10 @@ const SignIn = () => {
           textAlign: "center"
         }}
       >
-        <h2>Already have an account?</h2>
-        <span>Sign up with your email and password</span>
+        <h1 style={{ letterSpacing: "2px" }}>Already have an account?</h1>
+        <span style={{ fontSize: "1.2rem", color: "darkcyan" }}>
+          Sign up with your email and password
+        </span>
         <form onSubmit={handleSubmit}>
           <Box
             sx={{
