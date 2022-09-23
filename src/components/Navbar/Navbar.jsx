@@ -14,13 +14,16 @@ import "./styles.css";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { Basket } from "./Basket";
+import { CategoriesContext } from "../../contexts/categories.context";
 import MenuIcon from "@mui/icons-material/Menu";
 function Navbar() {
   const { currentUser } = useContext(UserContext);
   const isMobile = useMediaQuery("(max-width:900px)");
+  const { setBasketOpen } = useContext(CategoriesContext);
   const [state, setState] = useState(false);
   const toggleDrawer = (open) => {
     setState(open);
+    setBasketOpen(open);
   };
   return (
     <>

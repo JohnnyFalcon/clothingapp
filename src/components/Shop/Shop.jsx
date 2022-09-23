@@ -7,7 +7,7 @@ import { CartContext } from "../../contexts/CartContext";
 import { Link } from "react-router-dom";
 import { CustomTooltipM } from "../CheckoutPage/styles";
 const Shop = () => {
-  const { categoriesMap } = useContext(CategoriesContext);
+  const { categoriesMap, basketOpen } = useContext(CategoriesContext);
   const { addItemToCart } = useContext(CartContext);
   const isMobile = useMediaQuery("(max-width:900px)");
   return Object.keys(categoriesMap)?.map((title) => (
@@ -22,7 +22,7 @@ const Shop = () => {
         <CustomTooltipM
           title="Tap for more"
           placement="right"
-          open={isMobile}
+          open={!basketOpen && isMobile}
           disableInteractive
           role="box"
         >
