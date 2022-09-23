@@ -10,6 +10,9 @@
   opacity: 0.9;
   display: flex;
 }
+.product-mobile {
+  display: flex;
+}
 
 .title {
   font-size: 1.5rem;
@@ -34,8 +37,9 @@
   transform: translateY(-1px);
 }
 
-.link {
+.linkShop {
   text-decoration: none;
+  color: black;
 }
 
 .category-title2 {
@@ -45,4 +49,12 @@
   text-shadow: 4px 4px 4px #bebdbd;
   display: flex;
   justify-content: center;
+}
+
+@media only screen and (max-width: 900px) {
+  .title {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
 }

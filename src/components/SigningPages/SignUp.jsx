@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import {
   auth,
   createUserDocumentFromAuth,
   createAuthUserWithEmailAndPassword
 } from "../../utils/firebase/firebase.utils";
-import { Button, InputLabel, Input, Box, Grid } from "@mui/material";
+import { InputLabel, Input, Box, useMediaQuery } from "@mui/material";
 import PasswordInput from "./PasswordInput";
 import { FormControlStyled, ButtonOutlined } from "./styles";
 
@@ -58,16 +58,18 @@ const SignUp = () => {
       }
     }
   };
-
+  const isMobile = useMediaQuery("(max-width:900px)");
   return (
     <>
       <Box
         sx={{
-          position: "absolute",
-          top: "45%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          textAlign: "center"
+          position: isMobile ? "flex" : "absolute",
+          top: !isMobile && "40%",
+          left: !isMobile && "50%",
+          transform: !isMobile && "translate(-50%, -50%)",
+          textAlign: "center",
+          justifyContent: isMobile && "center",
+          mt: isMobile && 7
         }}
       >
         <h1 style={{ letterSpacing: "2px" }}>

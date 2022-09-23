@@ -5,7 +5,14 @@ import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword
 } from "../../utils/firebase/firebase.utils";
-import { Button, InputLabel, Input, Box, Typography } from "@mui/material";
+import {
+  Button,
+  InputLabel,
+  Input,
+  Box,
+  Typography,
+  useMediaQuery
+} from "@mui/material";
 import PasswordInput from "./PasswordInput";
 import { FormControlStyled, ButtonStyled, ButtonOutlined } from "./styles";
 
@@ -55,16 +62,18 @@ const SignIn = () => {
   const signInWithGoogle = async () => {
     await signInWithGooglePopup();
   };
-
+  const isMobile = useMediaQuery("(max-width:900px)");
   return (
     <>
       <Box
         sx={{
-          position: "absolute",
-          top: "40%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          textAlign: "center"
+          position: isMobile ? "flex" : "absolute",
+          top: !isMobile && "40%",
+          left: !isMobile && "50%",
+          transform: !isMobile && "translate(-50%, -50%)",
+          textAlign: "center",
+          justifyContent: isMobile && "center",
+          mt: isMobile && 7
         }}
       >
         <h1 style={{ letterSpacing: "2px" }}>Already have an account?</h1>

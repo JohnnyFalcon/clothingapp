@@ -7,6 +7,12 @@
   margin-top: 4px;
   font-size: 1.1rem;
 }
+.linkMobile {
+  margin-left: 0;
+  margin-top: 2px;
+  display: flex;
+  justify-content: center;
+}
 .link:hover {
   color: darkcyan;
 }
@@ -35,7 +41,18 @@
   position: absolute;
   width: 100%;
   left: 0;
-  top: 11%;
+  top: 100%;
+}
+
+.hrLineMobile {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0)
+  );
 }
 .basket:hover {
   color: darkcyan;

@@ -17,4 +17,20 @@ const ButtonStyled = styled(Button)({
   }
 });
 
-export { ButtonStyled };
+const ButtonStyledMobile = styled(Button)({
+  color: "darkcyan",
+  backgroundColor: "white",
+  width: "80%",
+  height: "50px",
+  position: "absolute",
+  display: "flex",
+  position: "absolute",
+  opacity: 0.7,
+  marginBottom: "8%",
+  "&:hover, &:active": {
+    backgroundColor: "white",
+    color: "darkcyan"
+  }
+});
+
+export { ButtonStyled, ButtonStyledMobile };

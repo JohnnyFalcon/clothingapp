@@ -3,7 +3,7 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
-import { Popover, Box, Grid, Badge } from "@mui/material";
+import { Popover, Box, Grid, Badge, useMediaQuery } from "@mui/material";
 import emptyImage from "../../images/empty.jpg";
 import "./styles.css";
 import { ButtonStyled, TypographyStyled } from "./styles";
@@ -30,15 +30,20 @@ export const Basket = () => {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
-
+  const isMobile = useMediaQuery("(max-width:900px)");
   return (
     <>
-      <Badge badgeContent={basketCount} color="myColor">
+      <Badge
+        badgeContent={basketCount}
+        color="myColor"
+        sx={{ mt: isMobile && "5px" }}
+      >
         <ShoppingBagOutlinedIcon
           className="basket"
           onClick={handleClick}
           sx={{
-            ml: "40px",
+            ml: isMobile ? "0" : "40px",
+
             fontSize: "2rem",
             cursor: "pointer"
           }}

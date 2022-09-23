@@ -10,12 +10,13 @@ import womenImage from "./images/women.jpg";
 import menImage from "./images/men.jpg";
 import SignUp from "./components/SigningPages/SignUp";
 import SignIn from "./components/SigningPages/SignIn";
-import { createTheme } from "@mui/material";
+
 import { ThemeProvider } from "@mui/material";
 import Shop from "./components/Shop/Shop";
 import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
 import SingleCategory from "./components/Shop/SingleCategory";
 import { CategoriesContext } from "./contexts/categories.context";
+import { theme } from "./theme";
 const App = () => {
   const categories = [
     {
@@ -44,30 +45,6 @@ const App = () => {
       image: menImage
     }
   ];
-
-  const theme = createTheme({
-    typography: {
-      fontFamily: ["Saira Semi Condensed", "sans-serif"].join(",")
-    },
-    palette: {
-      myColor: {
-        main: "#008b8b",
-        contrastText: "#fff"
-      },
-      myColor2: {
-        main: "red"
-      }
-    }
-  });
-
-  const { setCategory } = useContext(CategoriesContext);
-
-  let { category } = useParams();
-  const { pathname } = useLocation();
-  useEffect(() => {
-    //setCategory();
-    console.log(pathname);
-  }, []);
 
   return (
     <>

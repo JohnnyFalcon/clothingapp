@@ -15,4 +15,17 @@ const CustomTooltip = styled(({ className, ...props }) => (
   }
 }));
 
-export { CustomTooltip };
+const CustomTooltipM = styled(({ className, ...props }) => (
+  <Tooltip {...props} arrow classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: theme.palette.common.black
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.black,
+    letterSpacing: 1,
+    fontSize: 8
+  }
+}));
+
+export { CustomTooltip, CustomTooltipM };
