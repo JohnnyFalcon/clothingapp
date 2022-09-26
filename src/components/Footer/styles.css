@@ -1,0 +1,15 @@
+.Box-footer {
+  margin: 5% -4% 5% -4%;
+  background: linear-gradient(
+    10deg,
+    black 0%,
+    black 0%,
+    darkcyan 100%,
+    darkcyan 100%
+  );
+}
+
+.news-text {
+  color: white;
+  font-size: 1.7rem;
+}

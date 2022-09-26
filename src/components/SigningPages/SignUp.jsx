@@ -7,6 +7,7 @@ import {
 import { InputLabel, Input, Box, useMediaQuery } from "@mui/material";
 import PasswordInput from "./PasswordInput";
 import { FormControlStyled, ButtonOutlined } from "./styles";
+import { Container } from "@mui/system";
 
 const defaultFormFields = {
   displayName: "",
@@ -61,80 +62,82 @@ const SignUp = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
   return (
     <>
-      <Box
-        sx={{
-          position: isMobile ? "flex" : "absolute",
-          top: !isMobile && "40%",
-          left: !isMobile && "50%",
-          transform: !isMobile && "translate(-50%, -50%)",
-          textAlign: "center",
-          justifyContent: isMobile && "center",
-          mt: isMobile && 7
-        }}
+      <Container
+        fixed
+        sx={{ justifyContent: "center", alignItems: "center", display: "flex" }}
       >
-        <h1 style={{ letterSpacing: "2px" }}>
-          Sign up with your <span style={{ color: "darkcyan" }}>email</span> and
-          <span style={{ color: "darkcyan" }}> password</span>
-        </h1>
-        <form onSubmit={handleSubmit}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column"
-            }}
-          >
-            <FormControlStyled sx={{ m: 1 }} variant="standard">
-              <InputLabel>Display Name</InputLabel>
-              <Input
-                type="text"
-                required
-                onChange={handleChange}
-                name="displayName"
-                value={displayName}
-              ></Input>
-            </FormControlStyled>
-            <FormControlStyled sx={{ m: 1 }} variant="standard">
-              <InputLabel>Email</InputLabel>
-              <Input
-                type="email"
-                required
-                onChange={handleChange}
-                name="email"
-                value={email}
-              ></Input>
-            </FormControlStyled>
-            <PasswordInput
-              labelName={passwordLable}
-              handleChange={handleChange}
-              name={"password"}
-              setFormFields={setFormFields}
-              password={formFields.password}
-              showPassword={formFields.showPassword}
-              formFields={formFields}
-              typePass={"showPassword"}
-            />
-            <PasswordInput
-              labelName={confirmLable}
-              handleChange={handleChange}
-              name={"confirmPassword"}
-              setFormFields={setFormFields}
-              password={formFields.confirmPassword}
-              showPassword={formFields.showConfirmPassword}
-              formFields={formFields}
-              typePass={"showConfirmPassword"}
-            />
-          </Box>
-          <ButtonOutlined
-            type="submit"
-            variant="outlined"
-            sx={{
-              mt: 4
-            }}
-          >
-            Sign Up
-          </ButtonOutlined>
-        </form>
-      </Box>
+        <Box
+          sx={{
+            width: "570px",
+            textAlign: "center",
+            mt: isMobile && 7
+          }}
+        >
+          <h1 style={{ letterSpacing: "2px" }}>
+            Sign up with your <span style={{ color: "darkcyan" }}>email</span>{" "}
+            and
+            <span style={{ color: "darkcyan" }}> password</span>
+          </h1>
+          <form onSubmit={handleSubmit}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column"
+              }}
+            >
+              <FormControlStyled sx={{ m: 1 }} variant="standard">
+                <InputLabel>Display Name</InputLabel>
+                <Input
+                  type="text"
+                  required
+                  onChange={handleChange}
+                  name="displayName"
+                  value={displayName}
+                ></Input>
+              </FormControlStyled>
+              <FormControlStyled sx={{ m: 1 }} variant="standard">
+                <InputLabel>Email</InputLabel>
+                <Input
+                  type="email"
+                  required
+                  onChange={handleChange}
+                  name="email"
+                  value={email}
+                ></Input>
+              </FormControlStyled>
+              <PasswordInput
+                labelName={passwordLable}
+                handleChange={handleChange}
+                name={"password"}
+                setFormFields={setFormFields}
+                password={formFields.password}
+                showPassword={formFields.showPassword}
+                formFields={formFields}
+                typePass={"showPassword"}
+              />
+              <PasswordInput
+                labelName={confirmLable}
+                handleChange={handleChange}
+                name={"confirmPassword"}
+                setFormFields={setFormFields}
+                password={formFields.confirmPassword}
+                showPassword={formFields.showConfirmPassword}
+                formFields={formFields}
+                typePass={"showConfirmPassword"}
+              />
+            </Box>
+            <ButtonOutlined
+              type="submit"
+              variant="outlined"
+              sx={{
+                mt: 4
+              }}
+            >
+              Sign Up
+            </ButtonOutlined>
+          </form>
+        </Box>
+      </Container>
     </>
   );
 };

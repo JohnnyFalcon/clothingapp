@@ -15,7 +15,7 @@ import { ThemeProvider } from "@mui/material";
 import Shop from "./components/Shop/Shop";
 import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
 import SingleCategory from "./components/Shop/SingleCategory";
-import { CategoriesContext } from "./contexts/categories.context";
+import Footer from "./components/Footer/Footer";
 import { theme } from "./theme";
 const App = () => {
   const categories = [
@@ -61,6 +61,7 @@ const App = () => {
             <Route path="checkout" element={<CheckoutPage />} />
           </Route>
         </Routes>
+        <Footer />
       </ThemeProvider>
     </>
   );

@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import PasswordInput from "./PasswordInput";
 import { FormControlStyled, ButtonStyled, ButtonOutlined } from "./styles";
+import { Container } from "@mui/system";
 
 const defaultFormFields = {
   email: "",
@@ -65,63 +66,68 @@ const SignIn = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
   return (
     <>
-      <Box
-        sx={{
-          position: isMobile ? "flex" : "absolute",
-          top: !isMobile && "40%",
-          left: !isMobile && "50%",
-          transform: !isMobile && "translate(-50%, -50%)",
-          textAlign: "center",
-          justifyContent: isMobile && "center",
-          mt: isMobile && 7
-        }}
+      <Container
+        fixed
+        sx={{ justifyContent: "center", alignItems: "center", display: "flex" }}
       >
-        <h1 style={{ letterSpacing: "2px" }}>Already have an account?</h1>
-        <span style={{ fontSize: "1.2rem", color: "darkcyan" }}>
-          Sign up with your email and password
-        </span>
-        <form onSubmit={handleSubmit}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column"
-            }}
-          >
-            <FormControlStyled sx={{ m: 1 }} variant="standard">
-              <InputLabel>Email</InputLabel>
-              <Input
-                type="email"
-                required
-                onChange={handleChange}
-                name="email"
-                value={formFields.email}
-              ></Input>
-            </FormControlStyled>
-            <PasswordInput
-              labelName={passwordLable}
-              handleChange={handleChange}
-              name={"password"}
-              setFormFields={setFormFields}
-              password={formFields.password}
-              showPassword={formFields.showPassword}
-              formFields={formFields}
-              typePass={"showPassword"}
-            />
-          </Box>
-          <Box display="flex" justifyContent="space-between" sx={{ mt: 4 }}>
-            <ButtonOutlined type="submit" variant="outlined" sx={{ mr: "10%" }}>
-              Sign In
-            </ButtonOutlined>
-            <ButtonStyled
-              onClick={signInWithGoogle}
-              variant="contained"
-              sx={{ backgroundColor: "darkcyan", width: "200px" }}
+        <Box
+          sx={{
+            width: "570px",
+            textAlign: "center",
+            mt: isMobile && 7
+          }}
+        >
+          <h1 style={{ letterSpacing: "2px" }}>Already have an account?</h1>
+          <span style={{ fontSize: "1.2rem", color: "darkcyan" }}>
+            Sign up with your email and password
+          </span>
+          <form onSubmit={handleSubmit}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column"
+              }}
             >
-              Google sign in
-            </ButtonStyled>
-          </Box>
-        </form>
-      </Box>
+              <FormControlStyled sx={{ m: 1 }} variant="standard">
+                <InputLabel>Email</InputLabel>
+                <Input
+                  type="email"
+                  required
+                  onChange={handleChange}
+                  name="email"
+                  value={formFields.email}
+                ></Input>
+              </FormControlStyled>
+              <PasswordInput
+                labelName={passwordLable}
+                handleChange={handleChange}
+                name={"password"}
+                setFormFields={setFormFields}
+                password={formFields.password}
+                showPassword={formFields.showPassword}
+                formFields={formFields}
+                typePass={"showPassword"}
+              />
+            </Box>
+            <Box display="flex" justifyContent="space-between" sx={{ mt: 4 }}>
+              <ButtonOutlined
+                type="submit"
+                variant="outlined"
+                sx={{ mr: "10%" }}
+              >
+                Sign In
+              </ButtonOutlined>
+              <ButtonStyled
+                onClick={signInWithGoogle}
+                variant="contained"
+                sx={{ backgroundColor: "darkcyan", width: "200px" }}
+              >
+                Google sign in
+              </ButtonStyled>
+            </Box>
+          </form>
+        </Box>
+      </Container>
     </>
   );
 };

@@ -18,7 +18,8 @@ import {
   collection,
   writeBatch,
   getDocs,
-  query
+  query,
+  addDoc
 } from "firebase/firestore";
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -97,6 +98,17 @@ export const createUserDocumentFromAuth = async (
     }
   }
   return userDocRef;
+};
+
+export const addNewSubscriber = async (input) => {
+  try {
+    await addDoc(collection(db, "subscribers"), {
+      email: input.toLowerCase(),
+      createAt: new Date()
+    });
+  } catch (error) {
+    console.log("error creating the subscriber", error.message);
+  }
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {

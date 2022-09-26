@@ -1,4 +1,4 @@
-import { FormControl, Button } from "@mui/material";
+import { FormControl, Button, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 const FormControlStyled = styled(FormControl)({
   "& label.Mui-focused": {
@@ -47,10 +47,24 @@ const ButtonOutlined2 = styled(Button)({
     borderColor: "black"
   }
 });
+
+const ButtonContained = styled(Button)({
+  color: "white",
+  backgroundColor: "transparent",
+  borderColor: "white",
+  height: "40px",
+  "&:hover": {
+    backgroundColor: "white",
+    color: "darkcyan",
+    borderColor: "white"
+  }
+});
+
 export {
   FormControlStyled,
   ButtonStyled,
   ButtonOutlined,
   ButtonSimple,
-  ButtonOutlined2
+  ButtonOutlined2,
+  ButtonContained
 };
