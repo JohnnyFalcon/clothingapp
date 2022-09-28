@@ -10,8 +10,7 @@ import { ButtonStyled, TypographyStyled } from "./styles";
 import { CategoriesContext } from "../../contexts/categories.context";
 import { Link } from "react-router-dom";
 export const Basket = () => {
-  const { cartItems, basketCount, setCartItems, removeAll } =
-    useContext(CartContext);
+  const { cartItems, basketCount, removeAll } = useContext(CartContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [scrollbarV, setScrollbarV] = React.useState(false); // Scrollbar visibility
   const { setBasketOpen } = useContext(CategoriesContext);

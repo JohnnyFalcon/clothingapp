@@ -1,6 +1,13 @@
 import React, { useContext } from "react";
 import { CategoriesContext } from "../../contexts/categories.context";
-import { Grid, Paper, Box, useMediaQuery } from "@mui/material";
+import {
+  Grid,
+  Paper,
+  Box,
+  useMediaQuery,
+  Alert,
+  Snackbar
+} from "@mui/material";
 import "./styles.css";
 import { ButtonStyled, ButtonStyledMobile } from "./styles";
 import { CartContext } from "../../contexts/CartContext";
@@ -9,7 +16,20 @@ import { CustomTooltipM } from "../CheckoutPage/styles";
 const Shop = () => {
   const { categoriesMap, basketOpen } = useContext(CategoriesContext);
   const { addItemToCart } = useContext(CartContext);
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
   const isMobile = useMediaQuery("(max-width:900px)");
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   return Object.keys(categoriesMap)?.map((title) => (
     <React.Fragment key={title}>
       <Box
@@ -62,7 +82,11 @@ const Shop = () => {
               {isMobile ? (
                 <ButtonStyledMobile
                   variant="contained"
-                  onClick={() => addItemToCart(product)}
+                  onClick={() => {
+                    handleClick();
+                    addItemToCart(product);
+                    setValue(product.name);
+                  }}
                 >
                   Add to card
                 </ButtonStyledMobile>
@@ -70,11 +94,31 @@ const Shop = () => {
                 <ButtonStyled
                   className="button"
                   variant="contained"
-                  onClick={() => addItemToCart(product)}
+                  onClick={() => {
+                    handleClick();
+                    addItemToCart(product);
+                    setValue(product.name);
+                  }}
                 >
                   Add to card
                 </ButtonStyled>
               )}
+              <Snackbar
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                open={open}
+                autoHideDuration={2000}
+                onClose={handleClose}
+              >
+                <Alert
+                  severity="success"
+                  sx={{
+                    width: "100%"
+                  }}
+                >
+                  <span style={{ fontWeight: "bold" }}>{value}</span> was
+                  successfully added to your shopping cart !
+                </Alert>
+              </Snackbar>
             </Paper>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <p className="title">{product.name}</p>

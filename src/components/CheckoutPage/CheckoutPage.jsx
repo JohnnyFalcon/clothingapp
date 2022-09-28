@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import {
   Grid,
@@ -7,7 +7,10 @@ import {
   Paper,
   Card,
   CardMedia,
-  useMediaQuery
+  useMediaQuery,
+  Fade,
+  Modal,
+  Backdrop
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
@@ -16,13 +19,25 @@ import { Link } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import "./styles.css";
-import { CustomTooltipM, CustomTooltip } from "./styles";
+import {
+  CustomTooltipM,
+  CustomTooltip,
+  ModalStyle,
+  ModalStyleMobile
+} from "./styles";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
 const CheckoutPage = () => {
-  const { cartItems, removeAll, removeOne, addItemToCart, total } =
-    useContext(CartContext);
-  const [color, setColor] = React.useState({ color: "black" });
-  const [color2, setColor2] = React.useState({ color: "darkcyan" });
-
+  const {
+    cartItems,
+    removeAll,
+    removeOne,
+    addItemToCart,
+    total,
+    setCartItems
+  } = useContext(CartContext);
+  const [color, setColor] = useState({ color: "black" });
+  const [color2, setColor2] = useState({ color: "darkcyan" });
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const interval = setInterval(() => {
       setColor({ color: "darkcyan" });
@@ -38,6 +53,17 @@ const CheckoutPage = () => {
     return () => clearInterval(interval);
   }, []);
   const isMobile = useMediaQuery("(max-width:900px)");
+
+  const handleClick = () => {
+    setOpen(true);
+    setTimeout(() => {
+      setOpen(false);
+      setCartItems([]);
+    }, 5000);
+  };
+
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <Typography
@@ -198,7 +224,7 @@ const CheckoutPage = () => {
                     <CustomTooltipM
                       title="Total"
                       placement="bottom"
-                      open={isMobile}
+                      open={!open && isMobile}
                       disableInteractive
                       role="box"
                       display={{ xs: "flex", md: "flex", lg: "none" }}
@@ -276,9 +302,44 @@ const CheckoutPage = () => {
                   mb: 2,
                   height: "45px"
                 }}
+                onClick={handleClick}
               >
                 Proceed to checkout
               </ButtonSimple>
+              <Modal
+                open={!isMobile && open}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                  timeout: 500
+                }}
+              >
+                <Fade in={!isMobile && open}>
+                  <Box sx={ModalStyle}>
+                    <Box sx={{ display: "flex", flexDirection: "row" }}>
+                      <TaskAltIcon sx={{ mt: "4px", mr: 2, color: "green" }} />
+                      <Typography
+                        id="transition-modal-title"
+                        variant="h6"
+                        component="h2"
+                        sx={{ color: "green" }}
+                      >
+                        THANK YOU FOR PURCHASE !
+                      </Typography>
+                      <TaskAltIcon sx={{ mt: "4px", ml: 2, color: "green" }} />
+                    </Box>
+
+                    <Typography
+                      id="transition-modal-description"
+                      sx={{ mt: 2 }}
+                    >
+                      Duis mollis, est non commodo luctus, nisi erat porttitor
+                      ligula.
+                    </Typography>
+                  </Box>
+                </Fade>
+              </Modal>
               <Link to="/shop" style={{ textDecoration: "none" }}>
                 <ButtonOutlined2
                   variant="outlined"
@@ -365,9 +426,40 @@ const CheckoutPage = () => {
               mb: 2,
               height: "45px"
             }}
+            onClick={handleClick}
           >
             Proceed to checkout
           </ButtonSimple>
+          <Modal
+            open={isMobile && open}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500
+            }}
+          >
+            <Fade in={isMobile && open}>
+              <Box sx={ModalStyleMobile}>
+                <Box sx={{ display: "flex", flexDirection: "row" }}>
+                  <TaskAltIcon sx={{ mt: "4px", mr: 1, color: "green" }} />
+                  <Typography
+                    variant="h6"
+                    component="h2"
+                    sx={{ color: "green", fontSize: "1.1rem" }}
+                  >
+                    THANK YOU FOR PURCHASE !
+                  </Typography>
+                  <TaskAltIcon sx={{ mt: "4px", ml: 1, color: "green" }} />
+                </Box>
+
+                <Typography sx={{ mt: 2 }}>
+                  Duis mollis, est non commodo luctus, nisi erat porttitor
+                  ligula.
+                </Typography>
+              </Box>
+            </Fade>
+          </Modal>
           <Link to="/shop" style={{ textDecoration: "none" }}>
             <ButtonOutlined2
               variant="outlined"
