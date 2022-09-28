@@ -1,18 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import {
-  auth,
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword
 } from "../../utils/firebase/firebase.utils";
-import {
-  Button,
-  InputLabel,
-  Input,
-  Box,
-  Typography,
-  useMediaQuery
-} from "@mui/material";
+import { InputLabel, Input, Box, useMediaQuery } from "@mui/material";
 import PasswordInput from "./PasswordInput";
 import { FormControlStyled, ButtonStyled, ButtonOutlined } from "./styles";
 import { Container } from "@mui/system";
@@ -68,7 +59,11 @@ const SignIn = () => {
     <>
       <Container
         fixed
-        sx={{ justifyContent: "center", alignItems: "center", display: "flex" }}
+        sx={{
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex"
+        }}
       >
         <Box
           sx={{
@@ -109,11 +104,19 @@ const SignIn = () => {
                 typePass={"showPassword"}
               />
             </Box>
-            <Box display="flex" justifyContent="space-between" sx={{ mt: 4 }}>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              sx={{
+                mt: 4,
+                flexDirection: isMobile && "column",
+                alignItems: isMobile && "center"
+              }}
+            >
               <ButtonOutlined
                 type="submit"
                 variant="outlined"
-                sx={{ mr: "10%" }}
+                sx={{ mr: !isMobile && "10%", mb: isMobile && 2 }}
               >
                 Sign In
               </ButtonOutlined>

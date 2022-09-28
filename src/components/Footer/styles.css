@@ -27,3 +27,9 @@
   text-decoration: none;
   color: black;
 }
+
+@media only screen and (max-width: 900px) {
+  .news-text {
+    font-size: 1.5rem;
+  }
+}
