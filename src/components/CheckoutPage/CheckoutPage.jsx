@@ -61,14 +61,19 @@ const CheckoutPage = () => {
     setTimeout(() => {
       setOpen(false);
       setCartItems([]);
-      setEmpty(true);
     }, 5000);
+
+    setTimeout(() => {
+      setEmpty(true);
+    }, 6000);
   };
 
   const handleClose = () => {
     setOpen(false);
     setCartItems([]);
-    setEmpty(true);
+    setTimeout(() => {
+      setEmpty(true);
+    }, 1000);
   };
 
   return (
