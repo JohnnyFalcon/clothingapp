@@ -1,5 +1,5 @@
-import { Routes, Route, useLocation, useParams } from "react-router-dom";
-import React, { useEffect, useContext } from "react";
+import { Routes, Route } from "react-router-dom";
+import React from "react";
 import { CssBaseline } from "@mui/material";
 import Homepage from "./components/Homepage/Homepage";
 import Navbar from "./components/Navbar/Navbar";
@@ -16,6 +16,7 @@ import Shop from "./components/Shop/Shop";
 import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
 import SingleCategory from "./components/Shop/SingleCategory";
 import Footer from "./components/Footer/Footer";
+import InfoPage from "./components/InfoPages/InfoPage";
 import { theme } from "./theme";
 const App = () => {
   const categories = [
@@ -55,10 +56,10 @@ const App = () => {
             <Route index element={<Homepage categories={categories} />} />
             <Route path="shop" element={<Shop />} />
             <Route path="shop/:category" element={<SingleCategory />} />
-
             <Route path="sign-in" element={<SignIn />} />
             <Route path="sign-up" element={<SignUp />} />
             <Route path="checkout" element={<CheckoutPage />} />
+            <Route path=":info" element={<InfoPage />} />
           </Route>
         </Routes>
         <Footer />

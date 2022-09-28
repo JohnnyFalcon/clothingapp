@@ -1,5 +1,5 @@
 .Box-footer {
-  margin: 5% -4% 5% -4%;
+  margin: 5% -4% 3% -4%;
   background: linear-gradient(
     10deg,
     black 0%,
@@ -9,7 +9,21 @@
   );
 }
 
+.Box-footer2 {
+  margin: 0% -4% 4% -4%;
+  background-color: #d0d9d1;
+}
+
 .news-text {
   color: white;
   font-size: 1.7rem;
+}
+
+.list-title {
+  font-size: 0.9rem;
+}
+
+.link2 {
+  text-decoration: none;
+  color: black;
 }

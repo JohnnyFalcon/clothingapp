@@ -15,7 +15,7 @@ const SingleCategory = () => {
         sx={{
           display: "flex",
           pb: !isMobile && 2,
-          justifyContent: isMobile && "center"
+          justifyContent: "center"
         }}
       >
         <h2 className="category-title2">{category}</h2>
