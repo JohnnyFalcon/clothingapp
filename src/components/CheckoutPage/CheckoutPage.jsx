@@ -18,6 +18,7 @@ import { ButtonSimple, ButtonOutlined2 } from "../SigningPages/styles";
 import { Link } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import "./styles.css";
 import {
   CustomTooltipM,
@@ -38,6 +39,7 @@ const CheckoutPage = () => {
   const [color, setColor] = useState({ color: "black" });
   const [color2, setColor2] = useState({ color: "darkcyan" });
   const [open, setOpen] = useState(false);
+  const [empty, setEmpty] = useState(false);
   useEffect(() => {
     const interval = setInterval(() => {
       setColor({ color: "darkcyan" });
@@ -59,10 +61,15 @@ const CheckoutPage = () => {
     setTimeout(() => {
       setOpen(false);
       setCartItems([]);
+      setEmpty(true);
     }, 5000);
   };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setCartItems([]);
+    setEmpty(true);
+  };
 
   return (
     <>
@@ -306,40 +313,85 @@ const CheckoutPage = () => {
               >
                 Proceed to checkout
               </ButtonSimple>
-              <Modal
-                open={!isMobile && open}
-                onClose={handleClose}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                  timeout: 500
-                }}
-              >
-                <Fade in={!isMobile && open}>
-                  <Box sx={ModalStyle}>
-                    <Box sx={{ display: "flex", flexDirection: "row" }}>
-                      <TaskAltIcon sx={{ mt: "4px", mr: 2, color: "green" }} />
-                      <Typography
-                        id="transition-modal-title"
-                        variant="h6"
-                        component="h2"
-                        sx={{ color: "green" }}
-                      >
-                        THANK YOU FOR PURCHASE !
-                      </Typography>
-                      <TaskAltIcon sx={{ mt: "4px", ml: 2, color: "green" }} />
-                    </Box>
+              {empty ? (
+                <Modal
+                  open={!isMobile && open}
+                  onClose={handleClose}
+                  closeAfterTransition
+                  BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500
+                  }}
+                >
+                  <Fade in={!isMobile && open}>
+                    <Box sx={ModalStyle}>
+                      <Box sx={{ display: "flex", flexDirection: "row" }}>
+                        <ErrorOutlineIcon
+                          sx={{ mt: "4px", mr: 2, color: "red" }}
+                        />
+                        <Typography
+                          id="transition-modal-title"
+                          variant="h6"
+                          component="h2"
+                          sx={{ color: "red" }}
+                        >
+                          There is no products in your shopping cart !
+                        </Typography>
+                        <ErrorOutlineIcon
+                          sx={{ mt: "4px", ml: 2, color: "red" }}
+                        />
+                      </Box>
 
-                    <Typography
-                      id="transition-modal-description"
-                      sx={{ mt: 2 }}
-                    >
-                      Duis mollis, est non commodo luctus, nisi erat porttitor
-                      ligula.
-                    </Typography>
-                  </Box>
-                </Fade>
-              </Modal>
+                      <Typography
+                        id="transition-modal-description"
+                        sx={{ mt: 2 }}
+                      >
+                        Duis mollis, est non commodo luctus, nisi erat porttitor
+                        ligula.
+                      </Typography>
+                    </Box>
+                  </Fade>
+                </Modal>
+              ) : (
+                <Modal
+                  open={!isMobile && open}
+                  onClose={handleClose}
+                  closeAfterTransition
+                  BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500
+                  }}
+                >
+                  <Fade in={!isMobile && open}>
+                    <Box sx={ModalStyle}>
+                      <Box sx={{ display: "flex", flexDirection: "row" }}>
+                        <TaskAltIcon
+                          sx={{ mt: "4px", mr: 2, color: "green" }}
+                        />
+                        <Typography
+                          id="transition-modal-title"
+                          variant="h6"
+                          component="h2"
+                          sx={{ color: "green" }}
+                        >
+                          THANK YOU FOR PURCHASE !
+                        </Typography>
+                        <TaskAltIcon
+                          sx={{ mt: "4px", ml: 2, color: "green" }}
+                        />
+                      </Box>
+
+                      <Typography
+                        id="transition-modal-description"
+                        sx={{ mt: 2 }}
+                      >
+                        Duis mollis, est non commodo luctus, nisi erat porttitor
+                        ligula.
+                      </Typography>
+                    </Box>
+                  </Fade>
+                </Modal>
+              )}
               <Link to="/shop" style={{ textDecoration: "none" }}>
                 <ButtonOutlined2
                   variant="outlined"
@@ -430,36 +482,69 @@ const CheckoutPage = () => {
           >
             Proceed to checkout
           </ButtonSimple>
-          <Modal
-            open={isMobile && open}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500
-            }}
-          >
-            <Fade in={isMobile && open}>
-              <Box sx={ModalStyleMobile}>
-                <Box sx={{ display: "flex", flexDirection: "row" }}>
-                  <TaskAltIcon sx={{ mt: "4px", mr: 1, color: "green" }} />
-                  <Typography
-                    variant="h6"
-                    component="h2"
-                    sx={{ color: "green", fontSize: "1.1rem" }}
-                  >
-                    THANK YOU FOR PURCHASE !
-                  </Typography>
-                  <TaskAltIcon sx={{ mt: "4px", ml: 1, color: "green" }} />
-                </Box>
+          {empty ? (
+            <Modal
+              open={isMobile && open}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500
+              }}
+            >
+              <Fade in={isMobile && open}>
+                <Box sx={ModalStyleMobile}>
+                  <Box sx={{ display: "flex", flexDirection: "row" }}>
+                    <ErrorOutlineIcon sx={{ mt: "4px", mr: 1, color: "red" }} />
+                    <Typography
+                      variant="h6"
+                      component="h2"
+                      sx={{ color: "red", fontSize: "1.1rem" }}
+                    >
+                      There is no products in your shopping cart !
+                    </Typography>
+                    <ErrorOutlineIcon sx={{ mt: "4px", ml: 1, color: "red" }} />
+                  </Box>
 
-                <Typography sx={{ mt: 2 }}>
-                  Duis mollis, est non commodo luctus, nisi erat porttitor
-                  ligula.
-                </Typography>
-              </Box>
-            </Fade>
-          </Modal>
+                  <Typography sx={{ mt: 2 }}>
+                    Duis mollis, est non commodo luctus, nisi erat porttitor
+                    ligula.
+                  </Typography>
+                </Box>
+              </Fade>
+            </Modal>
+          ) : (
+            <Modal
+              open={isMobile && open}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500
+              }}
+            >
+              <Fade in={isMobile && open}>
+                <Box sx={ModalStyleMobile}>
+                  <Box sx={{ display: "flex", flexDirection: "row" }}>
+                    <TaskAltIcon sx={{ mt: "4px", mr: 1, color: "green" }} />
+                    <Typography
+                      variant="h6"
+                      component="h2"
+                      sx={{ color: "green", fontSize: "1.1rem" }}
+                    >
+                      THANK YOU FOR PURCHASE !
+                    </Typography>
+                    <TaskAltIcon sx={{ mt: "4px", ml: 1, color: "green" }} />
+                  </Box>
+
+                  <Typography sx={{ mt: 2 }}>
+                    Duis mollis, est non commodo luctus, nisi erat porttitor
+                    ligula.
+                  </Typography>
+                </Box>
+              </Fade>
+            </Modal>
+          )}
           <Link to="/shop" style={{ textDecoration: "none" }}>
             <ButtonOutlined2
               variant="outlined"
