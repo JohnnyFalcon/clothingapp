@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Premium clothing - e-commerce website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Complex e-commerce website with full functionality and mobile responsiveness. Contected to firebase to display data, authenticate users and send newsletters.
 
 ## Available Scripts
 

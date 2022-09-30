@@ -7,7 +7,8 @@ import {
   useMediaQuery,
   IconButton,
   Stack,
-  SwipeableDrawer
+  SwipeableDrawer,
+  Divider
 } from "@mui/material";
 import logo from "../../images/premium_clothing_logo.png";
 import "./styles.css";
@@ -17,14 +18,20 @@ import { Basket } from "./Basket";
 import { CategoriesContext } from "../../contexts/categories.context";
 import MenuIcon from "@mui/icons-material/Menu";
 function Navbar() {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, userName } = useContext(UserContext);
+  // Creatning user nickname to display on the page
+  const userName1 = userName?.split(".")[0].split("@")[0];
+  const userName2 = userName1?.charAt(0).toUpperCase() + userName1?.slice(1);
+
   const isMobile = useMediaQuery("(max-width:900px)");
   const { setBasketOpen } = useContext(CategoriesContext);
+
   const [state, setState] = useState(false);
   const toggleDrawer = (open) => {
     setState(open);
     setBasketOpen(open);
   };
+
   return (
     <>
       <Toolbar
@@ -82,6 +89,21 @@ function Navbar() {
             />
           </Link>
           <Basket />
+          {currentUser && (
+            <>
+              <Divider
+                orientation="vertical"
+                flexItem
+                sx={{ ml: 2, backgroundColor: "darkcyan" }}
+              />
+              <Box sx={{ ml: 2 }}>
+                <span>
+                  Hello,
+                  <br /> {userName2}
+                </span>
+              </Box>
+            </>
+          )}
         </Box>
         {/* -- Mobile verison --  */}
         <Box display={{ xs: "flex", sm: "none" }}>
@@ -97,6 +119,25 @@ function Navbar() {
             sx={{ ".MuiDrawer-paper": { pl: "5%", pr: "5%" } }}
           >
             <Stack spacing={2} justifyContent="space-evenly" sx={{ pt: 2 }}>
+              {currentUser && (
+                <>
+                  <Box sx={{}}>
+                    <span>
+                      Hello,
+                      <br /> {userName2}
+                    </span>
+                    <Divider
+                      variant="fullWidth"
+                      sx={{
+                        backgroundColor: "darkcyan",
+                        ml: -2,
+                        mr: -2,
+                        mt: 1
+                      }}
+                    />
+                  </Box>
+                </>
+              )}
               <Link
                 className="link linkMobile"
                 to="/shop"
