@@ -7,6 +7,7 @@ Link to website: https://regal-daifuku-70a96b.netlify.app/
 
 ### General info
 I built this website to strengthen my skills with React and show them off to future potential employers.
+As You are reading this I still work on optimization and new features.  
 
 ### Built With
 * React.js
