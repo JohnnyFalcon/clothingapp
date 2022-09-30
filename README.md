@@ -1,6 +1,7 @@
 # Premium clothing - e-commerce website
 
 Complex e-commerce website with full functionality and mobile responsiveness. Contected to firebase to display data, authenticate users and send newsletters.
+
 ![Website-ss](https://user-images.githubusercontent.com/82409487/193294308-315890ca-cafd-41bb-bc4f-ce82570da8cd.png)
 
 ### General info
