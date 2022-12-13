@@ -104,8 +104,7 @@
 
 .animated-button {
   animation: shake-button 2s infinite;
-  position: absolute;
-  top: 70%;
+
   opacity: 1;
   background-color: transparent;
   padding: 15px;
@@ -117,7 +116,10 @@
   border-width: 3px;
   font-size: 1.5rem;
 }
-
+.link-shop-now {
+  position: absolute;
+  top: 70%;
+}
 @media only screen and (max-width: 600px) {
   .animated-button {
     padding: 5px;

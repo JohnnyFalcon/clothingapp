@@ -16,8 +16,9 @@ function Homepage({ categories }) {
           src={xmasMain}
           alt="Christmas scenery with discount of 30%"
         />
-
-        <button className="animated-button">Shop now</button>
+        <Link className="link-shop-now" to="/shop">
+          <button className="animated-button">Shop now</button>
+        </Link>
       </div>
 
       <div className="buttons-box">
