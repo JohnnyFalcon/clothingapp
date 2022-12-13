@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, Fragment } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import {
   Grid,
@@ -27,6 +27,7 @@ import {
   ModalStyleMobile
 } from "./styles";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
+
 const CheckoutPage = () => {
   const {
     cartItems,
@@ -54,6 +55,13 @@ const CheckoutPage = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (cartItems.length === 0) setEmpty(true);
+    }, 1000);
+  }, [cartItems]);
+
   const isMobile = useMediaQuery("(max-width:900px)");
 
   const handleClick = () => {
@@ -62,18 +70,11 @@ const CheckoutPage = () => {
       setOpen(false);
       setCartItems([]);
     }, 5000);
-
-    setTimeout(() => {
-      setEmpty(true);
-    }, 6000);
   };
 
   const handleClose = () => {
     setOpen(false);
     setCartItems([]);
-    setTimeout(() => {
-      setEmpty(true);
-    }, 1000);
   };
 
   return (
@@ -123,10 +124,9 @@ const CheckoutPage = () => {
           <hr className="hrL" />
 
           {cartItems.map((cartItem) => (
-            <>
+            <Fragment key={cartItem.id}>
               <Grid
                 container
-                key={cartItem.id}
                 sx={{
                   display: "flex",
                   alignItems: "center",
@@ -256,7 +256,7 @@ const CheckoutPage = () => {
                 </Grid>
               </Grid>
               <hr className="hrL" />
-            </>
+            </Fragment>
           ))}
         </Grid>
 
@@ -432,6 +432,9 @@ const CheckoutPage = () => {
           </Paper>
         </Grid>
       </Grid>
+
+      {/* ----------- Mobile version of summary -------------------- */}
+
       <Box
         sx={{
           backgroundColor: "#dae3e3",

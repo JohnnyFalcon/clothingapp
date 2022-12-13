@@ -27,7 +27,7 @@ const App = () => {
     },
     {
       id: 2,
-      title: "T-shirts",
+      title: "Jackets",
       image: tshirtsImage
     },
     {
@@ -38,12 +38,14 @@ const App = () => {
     {
       id: 4,
       title: "Women",
-      image: womenImage
+      image: womenImage,
+      xmas: true
     },
     {
       id: 5,
       title: "Men",
-      image: menImage
+      image: menImage,
+      xmas: true
     }
   ];
 

@@ -105,12 +105,10 @@ export const addNewSubscriber = async (input) => {
   const subscriberDocRef = doc(db, "subscribers", input.uid);
   const subscriberSnapshot = await getDoc(subscriberDocRef);
   try {
-    if (!subscriberSnapshot.exists()) {
-      await addDoc(collection(db, "subscribers"), {
-        email: input.toLowerCase(),
-        createAt: new Date()
-      });
-    }
+    await addDoc(collection(db, "subscribers"), {
+      email: input.toLowerCase(),
+      createAt: new Date()
+    });
   } catch (error) {
     console.log("error creating the subscriber", error.message);
   }

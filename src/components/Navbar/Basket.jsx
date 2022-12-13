@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useContext } from "react";
@@ -93,10 +93,9 @@ export const Basket = () => {
               onMouseLeave={handleMouseOver}
             >
               {cartItems.map((cartItem) => (
-                <>
+                <Fragment key={cartItem.id}>
                   <Grid
                     container
-                    key={cartItem.id}
                     sx={{
                       margin: 2,
                       height: "120px",
@@ -150,7 +149,7 @@ export const Basket = () => {
                       </Box>
                     </Grid>
                   </Grid>
-                </>
+                </Fragment>
               ))}
             </Box>
             <Box

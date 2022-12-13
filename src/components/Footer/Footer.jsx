@@ -17,6 +17,7 @@ import React, { useState } from "react";
 import "./styles.css";
 import { addNewSubscriber } from "../../utils/firebase/firebase.utils";
 import { ListItemButtonStyled } from "./styles";
+import { ErrorOutline } from "@mui/icons-material";
 const Footer = () => {
   const isMobile = useMediaQuery("(max-width:900px)");
   const [input, setInput] = useState("");
@@ -37,8 +38,11 @@ const Footer = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    addNewSubscriber(input);
+    try {
+      await addNewSubscriber(input);
+    } catch (error) {
+      console.log(error);
+    }
 
     setInput("");
     setAlert(true);

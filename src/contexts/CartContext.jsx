@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useReducer } from "react";
 
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
@@ -41,24 +41,29 @@ export const CartContext = createContext({
   removeOne: () => {}
 });
 
+// const initialState = {
+//   basketCount: 0,
+//   total: 0,
+//   cartItems: []
+// };
+
+// const cartReducer = (action, state) => {};
+
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [basketCount, setBasketCount] = useState(0);
   const [total, setTotal] = useState(0);
   useEffect(() => {
-    const newBasketCount = cartItems.reduce(
-      (total, cartItem) => total + cartItem.quantity,
-      0
-    );
-    setBasketCount(newBasketCount);
-  }, [cartItems]);
-
-  useEffect(() => {
-    const sum = cartItems.reduce(
-      (total, cartItem) => total + cartItem.quantity * cartItem.price,
-      0
-    );
-    setTotal(sum);
+    if (cartItems.length > 0) {
+      const newBasketCount = cartItems.reduce(
+        (total, cartItem) => total + cartItem.quantity
+      );
+      const sum = cartItems?.reduce(
+        (total, cartItem) => total + cartItem.quantity * cartItem.price
+      );
+      setTotal(sum);
+      setBasketCount(newBasketCount);
+    }
   }, [cartItems]);
 
   const addItemToCart = (productToAdd) => {
