@@ -38,7 +38,8 @@ export const CartContext = createContext({
   addItemToCart: () => {},
   basketCount: 0,
   removeAll: () => {},
-  removeOne: () => {}
+  removeOne: () => {},
+  snowToggle: true
 });
 
 // const initialState = {
@@ -52,6 +53,7 @@ export const CartContext = createContext({
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [basketCount, setBasketCount] = useState(0);
+  const [snowToggle, setSnowToggle] = useState(true);
   const [total, setTotal] = useState(0);
   useEffect(() => {
     if (cartItems.length > 0) {
@@ -66,7 +68,6 @@ export const CartProvider = ({ children }) => {
       setTotal(sum);
       setBasketCount(newBasketCount);
     }
-    console.log(basketCount);
   }, [cartItems]);
 
   const addItemToCart = (productToAdd) => {
@@ -79,6 +80,9 @@ export const CartProvider = ({ children }) => {
   const removeOne = (objectToRemove) => {
     setCartItems(removeElement(cartItems, objectToRemove));
   };
+  const handleToggle = () => {
+    setSnowToggle(!snowToggle);
+  };
   const value = {
     addItemToCart,
     cartItems,
@@ -86,7 +90,9 @@ export const CartProvider = ({ children }) => {
     setCartItems,
     removeAll,
     removeOne,
-    total
+    total,
+    handleToggle,
+    snowToggle
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

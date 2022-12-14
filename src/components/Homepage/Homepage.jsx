@@ -1,14 +1,38 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CategoriesContext } from "../../contexts/categories.context";
-import { Grid, Box, Paper, Typography, useMediaQuery } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Paper,
+  Typography,
+  useMediaQuery,
+  Switch
+} from "@mui/material";
 import "./styles.css";
 import xmasMain from "../../images/main-page-photo-xmas.png";
 import { Link } from "react-router-dom";
 import Snowfall from "react-snowfall";
+import { alpha, styled } from "@mui/material/styles";
+import { cyan } from "@mui/material/colors";
+import AcUnitIcon from "@mui/icons-material/AcUnit";
+import { CartContext } from "../../contexts/CartContext";
 function Homepage({ categories }) {
   const { setCategory } = useContext(CategoriesContext);
   const isMobile = useMediaQuery("(max-width:900px)");
+  const { handleToggle, snowToggle } = useContext(CartContext);
+  const SnowSwitch = styled(Switch)(({ theme }) => ({
+    "& .MuiSwitch-switchBase.Mui-checked": {
+      color: cyan[700],
+      "&:hover": {
+        backgroundColor: alpha(cyan[700], theme.palette.action.hoverOpacity)
+      }
+    },
+    "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+      backgroundColor: cyan[700]
+    }
+  }));
 
+  const label = { inputProps: { "aria-label": "Switch demo" } };
   return (
     <>
       <div className="main-photo">
@@ -20,7 +44,54 @@ function Homepage({ categories }) {
         <Link className="link-shop-now" to="/shop">
           <button className="animated-button">Shop now</button>
         </Link>
+        {!isMobile && (
+          <div className="switch">
+            <div className="snowflake">
+              {" "}
+              <AcUnitIcon style={{ color: !snowToggle && "darkcyan" }} />
+            </div>
+
+            <SnowSwitch
+              {...label}
+              onClick={handleToggle}
+              checked={snowToggle}
+            />
+
+            <span
+              className="switch-label"
+              style={{ color: !snowToggle && "black" }}
+            >
+              {snowToggle ? "Hide" : "Show"} Snowfall
+            </span>
+            <div className="snowflake">
+              {" "}
+              <AcUnitIcon style={{ color: !snowToggle && "darkcyan" }} />
+            </div>
+          </div>
+        )}
       </div>
+
+      {isMobile && (
+        <div className="switch">
+          <div className="snowflake">
+            {" "}
+            <AcUnitIcon style={{ color: !snowToggle && "darkcyan" }} />
+          </div>
+
+          <SnowSwitch {...label} onClick={handleToggle} checked={snowToggle} />
+
+          <span
+            className="switch-label"
+            style={{ color: !snowToggle && "black" }}
+          >
+            {snowToggle ? "Hide" : "Show"} Snowfall
+          </span>
+          <div className="snowflake">
+            {" "}
+            <AcUnitIcon style={{ color: !snowToggle && "darkcyan" }} />
+          </div>
+        </div>
+      )}
 
       <div className="buttons-box">
         {categories.map(

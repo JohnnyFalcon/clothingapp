@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { CssBaseline } from "@mui/material";
 import Homepage from "./components/Homepage/Homepage";
 import Navbar from "./components/Navbar/Navbar";
@@ -19,6 +19,7 @@ import Footer from "./components/Footer/Footer";
 import InfoPage from "./components/InfoPages/InfoPage";
 import { theme } from "./theme";
 import Snowfall from "react-snowfall";
+import { CartContext } from "./contexts/CartContext";
 
 const App = () => {
   const categories = [
@@ -50,20 +51,13 @@ const App = () => {
       xmas: true
     }
   ];
-
-  const [snow, setSnow] = useState(true);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setSnow(false);
-  //   }, 8000);
-  // });
+  const { snowToggle } = useContext(CartContext);
 
   return (
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {snow && (
+        {snowToggle && (
           <div
             style={{
               position: "fixed",

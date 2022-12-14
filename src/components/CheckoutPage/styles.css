@@ -10,3 +10,24 @@
 .delete-icon:active {
   transform: translateY(-1px);
 }
+
+.input-discount {
+  background-color: transparent;
+  padding: 8px;
+  border-radius: 5px;
+}
+.button-discount {
+  padding: 8px 14px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.button-discount:hover {
+  opacity: 0.8;
+}
+.form-discount {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}

@@ -260,11 +260,13 @@ const CheckoutPage = () => {
           ))}
         </Grid>
 
+        {/* --------         Summary    ---------------- */}
+
         <Grid item xs={12} md={6} lg={4}>
           <Paper
             sx={{
               backgroundColor: "#dae3e3",
-              height: "400px",
+              height: "420px",
               width: "300px",
               position: "sticky",
               top: "4rem",
@@ -281,6 +283,30 @@ const CheckoutPage = () => {
             >
               Summary
             </Typography>
+
+            {false && (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  mt: 2,
+                  ml: 3,
+                  mr: 3,
+                  mb: -2
+                }}
+              >
+                <Typography variant="body1" sx={{ fontSize: "1rem" }}>
+                  Discount
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: "bold", fontSize: "1rem" }}
+                >
+                  {total}$
+                </Typography>
+              </Box>
+            )}
+
             <Box
               sx={{
                 display: "flex",
@@ -298,6 +324,19 @@ const CheckoutPage = () => {
                 {total}$
               </Typography>
             </Box>
+
+            <form className="form-discount">
+              <input
+                className="input-discount"
+                type="text"
+                required
+                spellCheck="false"
+                placeholder="Enter discount code"
+              ></input>
+              <button className="button-discount" type="submit">
+                APPLY
+              </button>
+            </form>
             <hr style={{ margin: 20 }} />
             <Box
               sx={{
@@ -411,7 +450,7 @@ const CheckoutPage = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 m: 3,
-                mt: 6
+                mt: 3
               }}
             >
               <ShoppingCartOutlinedIcon
