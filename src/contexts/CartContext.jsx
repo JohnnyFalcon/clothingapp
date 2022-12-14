@@ -56,14 +56,17 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     if (cartItems.length > 0) {
       const newBasketCount = cartItems.reduce(
-        (total, cartItem) => total + cartItem.quantity
+        (total, cartItem) => total + cartItem.quantity,
+        0
       );
       const sum = cartItems?.reduce(
-        (total, cartItem) => total + cartItem.quantity * cartItem.price
+        (total, cartItem) => total + cartItem.quantity * cartItem.price,
+        0
       );
       setTotal(sum);
       setBasketCount(newBasketCount);
     }
+    console.log(basketCount);
   }, [cartItems]);
 
   const addItemToCart = (productToAdd) => {

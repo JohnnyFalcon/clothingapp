@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CssBaseline } from "@mui/material";
 import Homepage from "./components/Homepage/Homepage";
 import Navbar from "./components/Navbar/Navbar";
@@ -18,6 +18,8 @@ import SingleCategory from "./components/Shop/SingleCategory";
 import Footer from "./components/Footer/Footer";
 import InfoPage from "./components/InfoPages/InfoPage";
 import { theme } from "./theme";
+import Snowfall from "react-snowfall";
+
 const App = () => {
   const categories = [
     {
@@ -49,10 +51,31 @@ const App = () => {
     }
   ];
 
+  const [snow, setSnow] = useState(true);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setSnow(false);
+  //   }, 8000);
+  // });
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        {snow && (
+          <div
+            style={{
+              position: "fixed",
+              width: "100%",
+              height: "100%",
+              zIndex: 10,
+              pointerEvents: "none"
+            }}
+          >
+            <Snowfall />
+          </div>
+        )}
         <Routes>
           <Route path="/" element={<Navbar />}>
             <Route index element={<Homepage categories={categories} />} />

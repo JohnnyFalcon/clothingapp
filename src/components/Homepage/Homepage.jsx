@@ -4,6 +4,7 @@ import { Grid, Box, Paper, Typography, useMediaQuery } from "@mui/material";
 import "./styles.css";
 import xmasMain from "../../images/main-page-photo-xmas.png";
 import { Link } from "react-router-dom";
+import Snowfall from "react-snowfall";
 function Homepage({ categories }) {
   const { setCategory } = useContext(CategoriesContext);
   const isMobile = useMediaQuery("(max-width:900px)");
