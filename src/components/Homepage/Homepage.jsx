@@ -1,17 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CategoriesContext } from "../../contexts/categories.context";
-import {
-  Grid,
-  Box,
-  Paper,
-  Typography,
-  useMediaQuery,
-  Switch
-} from "@mui/material";
+import { Box, Paper, useMediaQuery, Switch } from "@mui/material";
 import "./styles.css";
 import xmasMain from "../../images/main-page-photo-xmas.png";
+import xmasMainMb from "../../images/main-page-photo-xmas-mobile.png";
 import { Link } from "react-router-dom";
-import Snowfall from "react-snowfall";
+
 import { alpha, styled } from "@mui/material/styles";
 import { cyan } from "@mui/material/colors";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
@@ -38,7 +32,7 @@ function Homepage({ categories }) {
       <div className="main-photo">
         <img
           className="xmas-img"
-          src={xmasMain}
+          src={isMobile ? xmasMainMb : xmasMain}
           alt="Christmas scenery with discount of 30%"
         />
         <Link className="link-shop-now" to="/shop">

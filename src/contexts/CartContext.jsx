@@ -54,21 +54,31 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [basketCount, setBasketCount] = useState(0);
   const [snowToggle, setSnowToggle] = useState(true);
+  const [discount, setDiscount] = useState(0);
+  const [valid, setValid] = useState(false);
   const [total, setTotal] = useState(0);
   useEffect(() => {
-    if (cartItems.length > 0) {
-      const newBasketCount = cartItems.reduce(
-        (total, cartItem) => total + cartItem.quantity,
-        0
-      );
-      const sum = cartItems?.reduce(
-        (total, cartItem) => total + cartItem.quantity * cartItem.price,
-        0
-      );
-      setTotal(sum);
+    const sum = cartItems?.reduce(
+      (total, cartItem) => total + cartItem.quantity * cartItem.price,
+      0
+    );
+
+    const newBasketCount = cartItems.reduce(
+      (total, cartItem) => total + cartItem.quantity,
+      0
+    );
+
+    setBasketCount(newBasketCount);
+    setTotal(sum);
+
+    if (valid) {
+      const discountSum = sum * 0.7;
+      const discountPrice = sum * 0.3;
       setBasketCount(newBasketCount);
+      setTotal(discountSum.toFixed(2));
+      setDiscount(discountPrice.toFixed(2));
     }
-  }, [cartItems]);
+  }, [cartItems, valid]);
 
   const addItemToCart = (productToAdd) => {
     setCartItems(addCartItem(cartItems, productToAdd));
@@ -92,7 +102,10 @@ export const CartProvider = ({ children }) => {
     removeOne,
     total,
     handleToggle,
-    snowToggle
+    snowToggle,
+    setValid,
+    valid,
+    discount
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

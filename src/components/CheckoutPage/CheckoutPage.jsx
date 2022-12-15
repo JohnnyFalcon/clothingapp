@@ -27,7 +27,7 @@ import {
   ModalStyleMobile
 } from "./styles";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
-
+import DiscountInput from "./DiscountInput";
 const CheckoutPage = () => {
   const {
     cartItems,
@@ -35,12 +35,17 @@ const CheckoutPage = () => {
     removeOne,
     addItemToCart,
     total,
-    setCartItems
+    setCartItems,
+    setValid,
+    valid,
+    discount
   } = useContext(CartContext);
   const [color, setColor] = useState({ color: "black" });
   const [color2, setColor2] = useState({ color: "darkcyan" });
   const [open, setOpen] = useState(false);
+
   const [empty, setEmpty] = useState(false);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setColor({ color: "darkcyan" });
@@ -66,15 +71,18 @@ const CheckoutPage = () => {
 
   const handleClick = () => {
     setOpen(true);
+
     setTimeout(() => {
       setOpen(false);
       setCartItems([]);
+      setValid(false);
     }, 5000);
   };
 
   const handleClose = () => {
     setOpen(false);
     setCartItems([]);
+    setValid(false);
   };
 
   return (
@@ -284,7 +292,7 @@ const CheckoutPage = () => {
               Summary
             </Typography>
 
-            {false && (
+            {valid && (
               <Box
                 sx={{
                   display: "flex",
@@ -302,7 +310,7 @@ const CheckoutPage = () => {
                   variant="body2"
                   sx={{ fontWeight: "bold", fontSize: "1rem" }}
                 >
-                  {total}$
+                  {discount}$
                 </Typography>
               </Box>
             )}
@@ -324,19 +332,8 @@ const CheckoutPage = () => {
                 {total}$
               </Typography>
             </Box>
-
-            <form className="form-discount">
-              <input
-                className="input-discount"
-                type="text"
-                required
-                spellCheck="false"
-                placeholder="Enter discount code"
-              ></input>
-              <button className="button-discount" type="submit">
-                APPLY
-              </button>
-            </form>
+            {/* -------------------   Discount FORM ---------------------------- */}
+            <DiscountInput />
             <hr style={{ margin: 20 }} />
             <Box
               sx={{
@@ -492,6 +489,28 @@ const CheckoutPage = () => {
         >
           Summary
         </Typography>
+        {valid && (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              mt: 2,
+              ml: 3,
+              mr: 3,
+              mb: -2
+            }}
+          >
+            <Typography variant="body1" sx={{ fontSize: "1rem" }}>
+              Discount
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{ fontWeight: "bold", fontSize: "1rem" }}
+            >
+              {discount}$
+            </Typography>
+          </Box>
+        )}
         <Box
           sx={{
             display: "flex",
@@ -509,6 +528,8 @@ const CheckoutPage = () => {
             {total}$
           </Typography>
         </Box>
+        {/* -------------------   Discout FORM ---------------------------- */}
+        <DiscountInput />
         <hr style={{ margin: 20 }} />
         <Box
           sx={{
