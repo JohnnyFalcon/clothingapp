@@ -122,15 +122,15 @@
 }
 @media only screen and (max-width: 600px) {
   .animated-button {
-    padding: 10px;
+    padding: 6px;
     width: 140px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     border-width: 2px;
   }
 }
 @media only screen and (max-width: 600px) {
   .link-shop-now {
-    top: 60%;
+    top: 59%;
   }
 }
 
