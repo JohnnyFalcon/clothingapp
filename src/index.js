@@ -8,7 +8,12 @@ import { UserProvider } from "./contexts/user.context";
 import { CategoriesProvider } from "./contexts/categories.context";
 import { CartProvider } from "./contexts/CartContext";
 import ScrollToTop from "./components/ScrollToTop";
+import { firebaseApp } from "./utils/firebase/firebase.utils";
+import { getAnalytics } from "firebase/analytics";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+export const firebaseAnalytics = getAnalytics(firebaseApp);
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
