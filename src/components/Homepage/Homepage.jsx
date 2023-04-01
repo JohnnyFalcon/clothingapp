@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { CategoriesContext } from "../../contexts/categories.context";
 import { Box, Paper, useMediaQuery, Switch } from "@mui/material";
 import "./styles.css";
@@ -10,6 +10,8 @@ import { alpha, styled } from "@mui/material/styles";
 import { cyan } from "@mui/material/colors";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 import { CartContext } from "../../contexts/CartContext";
+import { firebaseApp } from "../../utils/firebase/firebase.utils";
+import { getAnalytics, logEvent } from "firebase/analytics";
 function Homepage({ categories }) {
   const { setCategory } = useContext(CategoriesContext);
   const isMobile = useMediaQuery("(max-width:900px)");
@@ -27,6 +29,11 @@ function Homepage({ categories }) {
   }));
 
   const label = { inputProps: { "aria-label": "Switch demo" } };
+  useEffect(() => {
+    const analytics = getAnalytics(firebaseApp);
+    logEvent(analytics, "page_visted");
+  }, []);
+
   return (
     <>
       <div className="main-photo">
