@@ -23,7 +23,7 @@ import {
 } from "firebase/firestore";
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB0SxPLwUdcffC-_6NA5bEe94L_6ubCcqs",
+  apiKey: process.env.REACT_APP_NOT_FIREBASE_KEY,
   authDomain: "clothing-app-db-f5c19.firebaseapp.com",
   projectId: "clothing-app-db-f5c19",
   storageBucket: "clothing-app-db-f5c19.appspot.com",
