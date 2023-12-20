@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { CategoriesContext } from "../../contexts/categories.context";
 import { Box, Paper, useMediaQuery, Switch } from "@mui/material";
 import "./styles.css";
-import xmasMain from "../../images/main-page-photo-xmas.png";
-import xmasMainMb from "../../images/main-page-photo-xmas-mobile.png";
+import xmasMain from "../../images/main-page-photo-xmas.jpg";
+import xmasMainMb from "../../images/main-page-photo-xmas-mobile.jpg";
 import { Link } from "react-router-dom";
 
 import { alpha, styled } from "@mui/material/styles";
@@ -16,6 +16,7 @@ function Homepage({ categories }) {
   const { setCategory } = useContext(CategoriesContext);
   const isMobile = useMediaQuery("(max-width:900px)");
   const { handleToggle, snowToggle } = useContext(CartContext);
+
   const SnowSwitch = styled(Switch)(({ theme }) => ({
     "& .MuiSwitch-switchBase.Mui-checked": {
       color: cyan[700],
