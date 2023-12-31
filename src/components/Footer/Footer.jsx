@@ -341,7 +341,7 @@ const Footer = () => {
         </Box>
       </Box>
 
-      <div style={{ paddingBottom: "3%" }}>
+      <div className="footer-links" style={{ paddingBottom: "3%" }}>
         <Typography
           variant="body2"
           style={{ color: "black", textAlign: "center" }}
@@ -352,6 +352,15 @@ const Footer = () => {
           </Link>
           <br />
           All Rights Reserved.
+        </Typography>
+        <Typography variant="body2">
+          <a
+            className="execution"
+            href="https://www.jakubsokolowski.me/"
+            target="blank"
+          >
+            Execution - <span>jakubsokolowski.me</span>
+          </a>
         </Typography>
       </div>
     </>

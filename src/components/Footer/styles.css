@@ -1,12 +1,10 @@
 .Box-footer {
   margin: 5% -4% 3% -4%;
-  background: linear-gradient(
-    10deg,
-    black 0%,
-    black 0%,
-    darkcyan 100%,
-    darkcyan 100%
-  );
+  background: linear-gradient(10deg,
+      black 0%,
+      black 0%,
+      darkcyan 100%,
+      darkcyan 100%);
 }
 
 .Box-footer2 {
@@ -26,6 +24,24 @@
 .link2 {
   text-decoration: none;
   color: black;
+}
+
+.execution {
+  color: black;
+  text-decoration: none;
+}
+
+.execution span {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 @media only screen and (max-width: 900px) {
